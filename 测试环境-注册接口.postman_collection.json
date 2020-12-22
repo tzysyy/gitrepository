@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "1da3acac-71f3-4ebc-a7e9-369056fb2d12",
+		"name": "测试环境-注册接口",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "获取验证码接口",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "48661baf-7846-408e-88da-738a64488890",
+						"exec": [
+							"var data = JSON.parse(responseBody)[0]\r",
+							"\r",
+							"pm.environment.set(\"captchaToken\", data.data.captchaToken);\r",
+							"pm.environment.set(\"captchaValue\", data.data.captchaValue);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://umsutest.niceloo.com/api//api/?apis=[{\"api\":\"sc/captcha/captcha\",\"params\":{\"scene\":\"ms_sms_verifyCode_send\"}}]&ctype=YOULU.WEB",
+					"protocol": "http",
+					"host": [
+						"umsutest",
+						"niceloo",
+						"com"
+					],
+					"path": [
+						"api",
+						"",
+						"api",
+						""
+					],
+					"query": [
+						{
+							"key": "apis",
+							"value": "[{\"api\":\"sc/captcha/captcha\",\"params\":{\"scene\":\"ms_sms_verifyCode_send\"}}]"
+						},
+						{
+							"key": "ctype",
+							"value": "YOULU.WEB"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "手机验证码接口",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "71fc355a-1796-4e13-9ec7-0f1333c1b492",
+						"exec": [
+							"var data = JSON.parse(responseBody)[0]\r",
+							"\r",
+							"pm.environment.set(\"verifyValue\", data.data.verifyValue);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://umsutest.niceloo.com/api/?apis=[{\"api\":\"mc/msg/sms/verifycode/send\",\"params\":{\"smsPhone\":\"13127770000\",\"smstplNo\":\"010001\",\"userLoginpwd\":\"123456\",\"captcha\":{\"captchaToken\":\"{{captchaToken}}\",\"captchaValue\":\"{{captchaValue}}\"},\"scene\":\"uc_regist\"}}]&TOKEN=6840CB65D39F43F69F43EB59235DBC63",
+					"protocol": "http",
+					"host": [
+						"umsutest",
+						"niceloo",
+						"com"
+					],
+					"path": [
+						"api",
+						""
+					],
+					"query": [
+						{
+							"key": "apis",
+							"value": "[{\"api\":\"mc/msg/sms/verifycode/send\",\"params\":{\"smsPhone\":\"13127770000\",\"smstplNo\":\"010001\",\"userLoginpwd\":\"123456\",\"captcha\":{\"captchaToken\":\"{{captchaToken}}\",\"captchaValue\":\"{{captchaValue}}\"},\"scene\":\"uc_regist\"}}]"
+						},
+						{
+							"key": "TOKEN",
+							"value": "6840CB65D39F43F69F43EB59235DBC63"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "注册接口",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://umsutest.niceloo.com/api//api/?apis=[{\"api\":\"uc/regist\",\"params\":{\"userName\":\"\",\"userLoginname\":\"\",\"userLoginpwd\":\"123456\",\"userMobile\":\"13127770000\",\"userEmail\":\"\",\"userFlag\":\"S\",\"userIdcard\":\"\",\"verify\":{\"verifyValue\":\"{{verifyValue}}\"},\"ext\":{},\"extension\":\"{\\\"identifyType\\\":\\\"M\\\",\\\"sourceType\\\":\\\"REGIST\\\",\\\"source\\\":\\\"01\\\",\\\"exploreInfo\\\":\\\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36\\\",\\\"clientIp\\\":\\\"\\\",\\\"projectSeocode\\\":null,\\\"projectCode\\\":null,\\\"projectSourceid\\\":\\\"\\\",\\\"pageId\\\":\\\"\\\",\\\"rcdStarturl\\\":\\\"http://wwwdev.niceloo.com/uc/login?redirect=http%3A%2F%2Fwwwdev.niceloo.com%2F\\\",\\\"rcdEndurl\\\":\\\"http://wwwtest.niceloo.com/\\\",\\\"pageName\\\":\\\"优路教育-点亮职业人生\\\",\\\"remark\\\":\\\"\\\"}\"}}]",
+					"protocol": "http",
+					"host": [
+						"umsutest",
+						"niceloo",
+						"com"
+					],
+					"path": [
+						"api",
+						"",
+						"api",
+						""
+					],
+					"query": [
+						{
+							"key": "apis",
+							"value": "[{\"api\":\"uc/regist\",\"params\":{\"userName\":\"\",\"userLoginname\":\"\",\"userLoginpwd\":\"123456\",\"userMobile\":\"13127770000\",\"userEmail\":\"\",\"userFlag\":\"S\",\"userIdcard\":\"\",\"verify\":{\"verifyValue\":\"{{verifyValue}}\"},\"ext\":{},\"extension\":\"{\\\"identifyType\\\":\\\"M\\\",\\\"sourceType\\\":\\\"REGIST\\\",\\\"source\\\":\\\"01\\\",\\\"exploreInfo\\\":\\\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36\\\",\\\"clientIp\\\":\\\"\\\",\\\"projectSeocode\\\":null,\\\"projectCode\\\":null,\\\"projectSourceid\\\":\\\"\\\",\\\"pageId\\\":\\\"\\\",\\\"rcdStarturl\\\":\\\"http://wwwdev.niceloo.com/uc/login?redirect=http%3A%2F%2Fwwwdev.niceloo.com%2F\\\",\\\"rcdEndurl\\\":\\\"http://wwwtest.niceloo.com/\\\",\\\"pageName\\\":\\\"优路教育-点亮职业人生\\\",\\\"remark\\\":\\\"\\\"}\"}}]"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
